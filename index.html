@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Web Judi Mini 🎰</title>
+  <style>
+    body {
+      background: radial-gradient(circle at center, #111, #000);
+      color: #fff;
+      font-family: 'Arial', sans-serif;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      height: 100vh;
+      text-align: center;
+    }
+    h1 { color: gold; }
+    .slot {
+      font-size: 60px;
+      margin: 20px;
+    }
+    button {
+      background: gold;
+      border: none;
+      color: black;
+      padding: 10px 20px;
+      border-radius: 10px;
+      font-size: 18px;
+      cursor: pointer;
+      transition: 0.2s;
+    }
+    button:hover {
+      background: orange;
+    }
+  </style>
+</head>
+<body>
+  <h1>🎰 Web Judi Mini 🎰</h1>
+  <div class="slot" id="slot">🍒 🍋 🍊</div>
+  <button onclick="putar()">PUTAR</button>
+  <h2 id="hasil"></h2>
+
+  <script>
+    const simbol = ["🍒", "🍋", "🍊", "🍉", "⭐", "7️⃣"];
+    function putar() {
+      const s1 = simbol[Math.floor(Math.random() * simbol.length)];
+      const s2 = simbol[Math.floor(Math.random() * simbol.length)];
+      const s3 = simbol[Math.floor(Math.random() * simbol.length)];
+      document.getElementById("slot").textContent = `${s1} ${s2} ${s3}`;
+      const hasil = document.getElementById("hasil");
+      if (s1 === s2 && s2 === s3) {
+        hasil.textContent = "🎉 JACKPOT! 🎉";
+      } else if (s1 === s2 || s2 === s3 || s1 === s3) {
+        hasil.textContent = "😎 Lumayan, dua sama!";
+      } else {
+        hasil.textContent = "😢 Coba lagi!";
+      }
+    }
+  </script>
+</body>
+</html>
