@@ -4,28 +4,28 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>🎮 Arcade Mini: Dadu, Slot, Koin & Roulette</title>
-    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="styles.css">
 </head>
 <body>
     <div class="container" id="app">
         <!-- Account Creation Page -->
         <div id="account-page">
             <h1>🧍 Buat Akun Baru</h1>
-            <input type="text" id="player-name" placeholder="Masukkan nama" />
             <input type="email" id="player-email" placeholder="Masukkan email" />
-            <p id="account-info">Masukkan nama dan email untuk memulai permainan.</p>
+            <p id="account-info">Masukkan email untuk memulai permainan.</p>
             <button onclick="createAccount()">Mulai Bermain</button>
         </div>
 
         <!-- Main Menu -->
         <div id="menu-page" class="hidden">
             <h1>🎮 Arcade Mini Center</h1>
-            <div class="status" id="status">👤 Nama | 💰 Kredit: 100 | ⭐ Total Poin: 0</div>
+            <div class="status" id="status">👤 Email: | 💰 Kredit: 100 | ⭐ Total Poin: 0</div>
             <button class="game-button" onclick="openGame('dadu')">🎲 Game Dadu</button>
             <button class="game-button" onclick="openGame('slot')">🎰 Slot Arcade</button>
             <button class="game-button" onclick="openGame('koin')">🪙 Tebak Koin</button>
             <button class="game-button" onclick="openGame('roulette')">🎯 Roulette Mini</button>
             <button class="bonus-button" onclick="followIG()">Follow IG @ajk_rafif_yasin (+50 Kredit)</button>
+            <button class="logout-button" onclick="logout()">Keluar Akun</button>
         </div>
 
         <!-- Dadu Game Page -->
