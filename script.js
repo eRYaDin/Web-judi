@@ -5,7 +5,6 @@ const COINS = ["Kepala", "Ekor"];
 const COLORS = ["Merah", "Hitam", "Hijau"];
 
 // Global Variables
-let playerName = "";
 let playerEmail = "";
 let playerCredit = 100;
 let playerTotalPoints = 0;
@@ -17,14 +16,13 @@ function showPage(pageId) {
 }
 
 function updateStatus() {
-    document.getElementById('status').textContent = `👤 ${playerName} | 💰 Kredit: ${playerCredit} | ⭐ Total Poin: ${playerTotalPoints}`;
+    document.getElementById('status').textContent = `👤 Email: ${playerEmail} | 💰 Kredit: ${playerCredit} | ⭐ Total Poin: ${playerTotalPoints}`;
 }
 
 function createAccount() {
-    playerName = document.getElementById('player-name').value.trim();
     playerEmail = document.getElementById('player-email').value.trim();
-    if (!playerName || !playerEmail) {
-        document.getElementById('account-info').textContent = "❗Masukkan nama dan email yang valid.";
+    if (!playerEmail) {
+        document.getElementById('account-info').textContent = "❗Masukkan email yang valid.";
         return;
     }
     playerCredit = 100; // modal awal
@@ -39,6 +37,13 @@ function followIG() {
     playerTotalPoints += 50;
     updateStatus();
     alert("Terima kasih telah follow! +50 kredit telah ditambahkan.");
+}
+
+function logout() {
+    playerEmail = "";
+    playerCredit = 100;
+    playerTotalPoints = 0;
+    showPage('account-page');
 }
 
 function backToMenu() {
@@ -216,45 +221,4 @@ function animateRoulette(callback) {
             return;
         }
         let num = Math.floor(Math.random() * 37);
-        let color = num === 0 ? "Hijau" : num % 2 === 0 ? "Merah" : "Hitam";
-        document.getElementById('roulette-display').textContent = `${num} (${color})`;
-    }, 50);
-}
-
-function spinRoulette() {
-    let colorChoice = document.querySelector('input[name="color-choice"]:checked').value;
-    let numberGuess = document.getElementById('number-guess').value;
-    let bet = parseInt(document.getElementById('roulette-bet').value) || 0;
-    let output = document.getElementById('roulette-output');
-    output.textContent = "";
-    if (bet <= 0) {
-        output.textContent = "❗Masukkan taruhan yang valid.\n";
-        return;
-    }
-    if (playerCredit < bet) {
-        output.textContent = "❌ Kredit tidak cukup!\n";
-        return;
-    }
-    playerCredit -= bet;
-    updateStatus();
-    output.textContent = "🎯 Memutar roda roulette...\n";
-    animateRoulette(() => {
-        let resultNum = Math.floor(Math.random() * 37);
-        let resultColor = resultNum === 0 ? "Hijau" : resultNum % 2 === 0 ? "Merah" : "Hitam";
-        document.getElementById('roulette-display').textContent = `${resultNum} (${resultColor})`;
-        output.textContent += `🎡 Hasil: ${resultNum} (${resultColor})\n`;
-        let win = 0;
-        if (numberGuess && parseInt(numberGuess) === resultNum) {
-            win = bet * 35;
-            output.innerHTML += `<span class="bonus">💰 Angka cocok! +${win} poin!\n</span>`;
-        } else if (colorChoice === resultColor) {
-            win = bet * 2;
-            output.innerHTML += `<span class="bonus">💎 Warna cocok! +${win} poin!\n</span>`;
-        } else {
-            output.innerHTML += `<span class="normal">❌ Kalah! Hilang ${bet} poin.\n</span>`;
-        }
-        playerCredit += win;
-        playerTotalPoints += win;
-        updateStatus();
-    });
-}
+        let color = num === 0 ? "Hijau" : num % 2 ===
