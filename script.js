@@ -178,4 +178,101 @@ function spinSlot() {
         let score;
         if (unique === 1) {
             score = 150;
-            output.innerHTML += `<span class="bonus">💎 JACKPOT! ${results.join(' ')} → +${score} poin!\
+            output.innerHTML += `<span class="bonus">💎 JACKPOT! ${results.join(' ')} → +${score} poin!\n</span>`;
+        } else if (unique === 2) {
+            score = 50;
+            output.innerHTML += `<span class="bonus">✨ Dua simbol sama! ${results.join(' ')} → +${score} poin.\n</span>`;
+        } else {
+            score = 10;
+            output.innerHTML += `<span class="normal">🙂 Tidak cocok semua. ${results.join(' ')} → +${score} poin.\n</span>`;
+        }
+        playerTotalPoints += score;
+        playerCredit += score;
+        updateStatus();
+    });
+}
+
+// Coin Game
+function flipCoin() {
+    let choice = document.querySelector('input[name="coin-choice"]:checked').value;
+    let bet = parseInt(document.getElementById('coin-bet').value) || 0;
+    let output = document.getElementById('coin-output');
+    output.textContent = "";
+    if (bet <= 0) {
+        output.textContent = "❗Masukkan jumlah taruhan yang valid.\n";
+        return;
+    }
+    if (playerCredit < bet) {
+        output.textContent = "❌ Kredit tidak cukup!\n";
+        return;
+    }
+    playerCredit -= bet;
+    updateStatus();
+    output.textContent = "🪙 Melempar koin...\n";
+    setTimeout(() => {
+        let result = COINS[Math.floor(Math.random() * COINS.length)];
+        output.textContent += `🎯 Hasil lemparan: ${result}\n`;
+        if (result === choice) {
+            let win = bet * 2;
+            playerCredit += win;
+            playerTotalPoints += win;
+            output.innerHTML += `<span class="bonus">✅ Tebakan benar! +${win} poin!\n</span>`;
+        } else {
+            output.innerHTML += `<span class="normal">❌ Tebakan salah. Taruhan hilang ${bet} poin.\n</span>`;
+        }
+        updateStatus();
+    }, 1000);
+}
+
+// Roulette Game
+function animateRoulette(callback) {
+    let start = Date.now();
+    let interval = setInterval(() => {
+        if (Date.now() - start > 2000) {
+            clearInterval(interval);
+            callback();
+            return;
+        }
+        let num = Math.floor(Math.random() * 37);
+        let color = num === 0 ? "Hijau" : num % 2 === 0 ? "Merah" : "Hitam";
+        document.getElementById('roulette-display').textContent = `${num} (${color})`;
+    }, 50);
+}
+
+function spinRoulette() {
+    let colorChoice = document.querySelector('input[name="color-choice"]:checked').value;
+    let numberGuess = document.getElementById('number-guess').value;
+    let bet = parseInt(document.getElementById('roulette-bet').value) || 0;
+    let output = document.getElementById('roulette-output');
+    output.textContent = "";
+    if (bet <= 0) {
+        output.textContent = "❗Masukkan taruhan yang valid.\n";
+        return;
+    }
+    if (playerCredit < bet) {
+        output.textContent = "❌ Kredit tidak cukup!\n";
+        return;
+    }
+    playerCredit -= bet;
+    updateStatus();
+    output.textContent = "🎯 Memutar roda roulette...\n";
+    animateRoulette(() => {
+        let resultNum = Math.floor(Math.random() * 37);
+        let resultColor = resultNum === 0 ? "Hijau" : resultNum % 2 === 0 ? "Merah" : "Hitam";
+        document.getElementById('roulette-display').textContent = `${resultNum} (${resultColor})`;
+        output.textContent += `🎡 Hasil: ${resultNum} (${resultColor})\n`;
+        let win = 0;
+        if (numberGuess && parseInt(numberGuess) === resultNum) {
+            win = bet * 35;
+            output.innerHTML += `<span class="bonus">💰 Angka cocok! +${win} poin!\n</span>`;
+        } else if (colorChoice === resultColor) {
+            win = bet * 2;
+            output.innerHTML += `<span class="bonus">💎 Warna cocok! +${win} poin!\n</span>`;
+        } else {
+            output.innerHTML += `<span class="normal">❌ Kalah! Hilang ${bet} poin.\n</span>`;
+        }
+        playerCredit += win;
+        playerTotalPoints += win;
+        updateStatus();
+    });
+}
