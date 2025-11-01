@@ -8,8 +8,21 @@
 </head>
 <body>
     <div class="container" id="app">
+        <!-- Sign-In Page (Mirip Google) -->
+        <div id="signin-page">
+            <div class="signin-header">
+                <h1>🎮 Arcade Mini</h1>
+                <p>Sign in to continue</p>
+            </div>
+            <div class="signin-form">
+                <button class="google-signin" onclick="signInWithGoogle()">Sign in with Google</button>
+                <p>Or</p>
+                <button class="email-signin" onclick="signInWithEmail()">Sign in with Email</button>
+            </div>
+        </div>
+
         <!-- Account Creation Page -->
-        <div id="account-page">
+        <div id="account-page" class="hidden">
             <h1>🧍 Buat Akun Baru</h1>
             <input type="email" id="player-email" placeholder="Masukkan email" />
             <p id="account-info">Masukkan email untuk memulai permainan.</p>
