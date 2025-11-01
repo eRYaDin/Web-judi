@@ -19,6 +19,16 @@ function updateStatus() {
     document.getElementById('status').textContent = `👤 Email: ${playerEmail} | 💰 Kredit: ${playerCredit} | ⭐ Total Poin: ${playerTotalPoints}`;
 }
 
+function signInWithGoogle() {
+    // Simulasi sign-in Google (bisa integrasi dengan Google API nanti)
+    alert("Signing in with Google... (Simulasi)");
+    showPage('account-page');
+}
+
+function signInWithEmail() {
+    showPage('account-page');
+}
+
 function createAccount() {
     playerEmail = document.getElementById('player-email').value.trim();
     if (!playerEmail) {
@@ -43,7 +53,7 @@ function logout() {
     playerEmail = "";
     playerCredit = 100;
     playerTotalPoints = 0;
-    showPage('account-page');
+    showPage('signin-page');
 }
 
 function backToMenu() {
@@ -195,30 +205,4 @@ function flipCoin() {
     }
     playerCredit -= bet;
     updateStatus();
-    output.textContent = "🪙 Melempar koin...\n";
-    setTimeout(() => {
-        let result = COINS[Math.floor(Math.random() * COINS.length)];
-        output.textContent += `🎯 Hasil lemparan: ${result}\n`;
-        if (result === choice) {
-            let win = bet * 2;
-            playerCredit += win;
-            playerTotalPoints += win;
-            output.innerHTML += `<span class="bonus">✅ Tebakan benar! +${win} poin!\n</span>`;
-        } else {
-            output.innerHTML += `<span class="normal">❌ Tebakan salah. Taruhan hilang ${bet} poin.\n</span>`;
-        }
-        updateStatus();
-    }, 1000);
-}
-
-// Roulette Game
-function animateRoulette(callback) {
-    let start = Date.now();
-    let interval = setInterval(() => {
-        if (Date.now() - start > 2000) {
-            clearInterval(interval);
-            callback();
-            return;
-        }
-        let num = Math.floor(Math.random() * 37);
-        let color = num === 0 ? "Hijau" : num % 2 ===
+    output.textContent = "🪙 Melempar koin
