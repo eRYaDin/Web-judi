@@ -20,9 +20,12 @@ function updateStatus() {
 }
 
 function signInWithGoogle() {
-    // Simulasi sign-in Google (tidak ada penyimpanan data)
-    alert("Signing in with Google... (Simulasi Beta)");
-    showPage('account-page');
+    // Simulasi sign-in Google (langsung ke menu dengan email dummy)
+    playerEmail = "user@gmail.com"; // Dummy email untuk percobaan
+    playerCredit = 100;
+    playerTotalPoints = 0;
+    showPage('menu-page');
+    updateStatus();
 }
 
 function signInWithEmail() {
@@ -175,30 +178,4 @@ function spinSlot() {
         let score;
         if (unique === 1) {
             score = 150;
-            output.innerHTML += `<span class="bonus">💎 JACKPOT! ${results.join(' ')} → +${score} poin!\n</span>`;
-        } else if (unique === 2) {
-            score = 50;
-            output.innerHTML += `<span class="bonus">✨ Dua simbol sama! ${results.join(' ')} → +${score} poin.\n</span>`;
-        } else {
-            score = 10;
-            output.innerHTML += `<span class="normal">🙂 Tidak cocok semua. ${results.join(' ')} → +${score} poin.\n</span>`;
-        }
-        playerTotalPoints += score;
-        playerCredit += score;
-        updateStatus();
-    });
-}
-
-// Coin Game
-function flipCoin() {
-    let choice = document.querySelector('input[name="coin-choice"]:checked').value;
-    let bet = parseInt(document.getElementById('coin-bet').value) || 0;
-    let output = document.getElementById('coin-output');
-    output.textContent = "";
-    if (bet <= 0) {
-        output.textContent = "❗Masukkan jumlah taruhan yang valid.\n";
-        return;
-    }
-    if (playerCredit < bet) {
-        output.textContent = "❌ Kredit tidak cukup!\n";
-        return
+            output.innerHTML += `<span class="bonus">💎 JACKPOT! ${results.join(' ')} → +${score} poin!\
