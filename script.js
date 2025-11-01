@@ -4,7 +4,7 @@ const SYMBOLS = ["🍒", "🍋", "🍇", "💎", "🍀", "🔔"];
 const COINS = ["Kepala", "Ekor"];
 const COLORS = ["Merah", "Hitam", "Hijau"];
 
-// Global Variables
+// Global Variables (Tidak ada penyimpanan data, hanya untuk percobaan)
 let playerEmail = "";
 let playerCredit = 100;
 let playerTotalPoints = 0;
@@ -20,8 +20,8 @@ function updateStatus() {
 }
 
 function signInWithGoogle() {
-    // Simulasi sign-in Google (bisa integrasi dengan Google API nanti)
-    alert("Signing in with Google... (Simulasi)");
+    // Simulasi sign-in Google (tidak ada penyimpanan data)
+    alert("Signing in with Google... (Simulasi Beta)");
     showPage('account-page');
 }
 
@@ -46,7 +46,7 @@ function followIG() {
     playerCredit += 50;
     playerTotalPoints += 50;
     updateStatus();
-    alert("Terima kasih telah follow! +50 kredit telah ditambahkan.");
+    alert("Terima kasih telah follow! +50 kredit telah ditambahkan (Beta).");
 }
 
 function logout() {
@@ -201,8 +201,4 @@ function flipCoin() {
     }
     if (playerCredit < bet) {
         output.textContent = "❌ Kredit tidak cukup!\n";
-        return;
-    }
-    playerCredit -= bet;
-    updateStatus();
-    output.textContent = "🪙 Melempar koin
+        return
