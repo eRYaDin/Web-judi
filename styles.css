@@ -109,3 +109,52 @@ input, select {
 .hidden {
     display: none;
 }
+/* Sign-In Page Styles (Mirip Google) */
+.signin-header {
+    text-align: center;
+    margin-bottom: 20px;
+}
+.signin-header h1 {
+    font-size: 36px;
+    margin-bottom: 10px;
+}
+.signin-form {
+    text-align: center;
+}
+.google-signin {
+    background-color: #4285F4;
+    color: white;
+    padding: 12px 24px;
+    border-radius: 4px;
+    font-size: 16px;
+    margin: 10px 0;
+    display: block;
+    width: 100%;
+    max-width: 300px;
+    margin-left: auto;
+    margin-right: auto;
+}
+.google-signin:hover {
+    background-color: #3367D6;
+}
+.email-signin {
+    background-color: #34A853;
+    color: white;
+    padding: 12px 24px;
+    border-radius: 4px;
+    font-size: 16px;
+    margin: 10px 0;
+    display: block;
+    width: 100%;
+    max-width: 300px;
+    margin-left: auto;
+    margin-right: auto;
+}
+.email-signin:hover {
+    background-color: #2E7D32;
+}
+.signin-form p {
+    margin: 20px 0;
+    font-size: 14px;
+    color: #666;
+}
